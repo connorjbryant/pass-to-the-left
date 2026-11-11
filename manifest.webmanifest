@@ -1,0 +1,17 @@
+{
+    "name": "Worming Around",
+    "short_name": "WormingAround",
+    "description": "Worming Around Game",
+    "scope": "/pass-to-the-left/",
+    "start_url": "/pass-to-the-left/",
+    "background-color": "#FFFFFF",
+    "theme-color": "FFFFFF",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/pass-to-the-left/img/icon.png",
+            "type": "image/png",
+            "sizes": "700x700"
+        }
+    ]
+}
