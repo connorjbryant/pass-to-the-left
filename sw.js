@@ -1,5 +1,5 @@
 var GHPATH = '/pass-to-the-left';
-var APP_PREFIX = 'wa_';
+var APP_PREFIX = 'pl_';
 var VERSION = 'v_0';
 var URLS = [
     `${GHPATH}/`,
