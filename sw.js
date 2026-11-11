@@ -1,4 +1,4 @@
-var GHPATH = '/worming-around';
+var GHPATH = '/pass-to-the-left';
 var APP_PREFIX = 'wa_';
 var VERSION = 'v_0';
 var URLS = [

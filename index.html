@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worming Around</title>
+    <link rel="canonical" href="https://connorjbryant.github.io/pass-to-the-left">
+    <link rel="manifest" href="/pass-to-the-left/manifest.webmanifest">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+        <button id="startBtn">Start</button>
+        <ul id="root">
+            <li id="start">
+                <div class="player-worm js-player"></div>
+            </li>
+            <li>
+                <div class="player-friend js-friend"></div>
+            </li>
+            <li>
+                <ul id="game"></ul>
+            </li>
+        </ul>
+    </main>
+    <script>
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register (
+                '/pass-to-the-left/sw.js',
+                {scope: '/pass-to-the-left/'}
+            )
+        }
+    </script>
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script src="js/jquery.mobile-events.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
