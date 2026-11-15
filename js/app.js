@@ -1,20 +1,45 @@
 jQuery(function($){
 
     let startBtn = $(".js-start");
-    let subitem = $(".subitem");
+    let stopLoop = false;
+    let stepDurration = 300;
+    let totalItems = $('[data-person^="1-"]').length;
+    let totalCycleTime = totalItems * stepDurration;
+    let loopInterval = null;
+
+    function runSequence(){
+        if (stopLoop) return;
+
+        for(let i = 1; i <= totalItems; i++){
+            let element = $(`[data-person="1-${i}"]`);
+
+            setTimeout(function(){
+                if (!stopLoop){
+                    element.addClass("food");
+                }
+            }, (i - 1) * stepDurration);
+
+            setTimeout(function(){
+                element.removeClass("food");
+            }, (i - 1) * stepDurration + stepDurration);
+        }
+    }
+
+    function startLoop(){
+        stopLoop = false;
+        clearInterval(loopInterval);
+        runSequence();
+        loopInterval = setInterval(function(){
+            if(stopLoop){
+                clearInterval(loopInterval);
+            } else {
+                runSequence();
+            }
+        }, totalCycleTime);
+    }
 
     startBtn.on("click", function(){
-        subitem.each(function(){
-            let person = $(this).data("person");
-
-            $(this).siblings(person).each(function(index){
-                var element = $(this);
-
-                setTimeout(function(){
-                    element.toggleClass("food");
-                }, index * 300);
-            });
-        });
+        startLoop();
     });
 
 });
