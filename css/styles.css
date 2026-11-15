@@ -1,3 +1,44 @@
 h1 {
     color: red;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
+}
+
+.subitem {
+    display: grid;
+    aspect-ratio: 1 / 1;
+    place-items: center;
+}
+
+[data-person] {
+    background-color: tan;
+}
+
+.table {
+    background-color: aliceblue;
+}
+
+.food {
+    width: 50%;
+    height: 50%;
+    background-color: red;
+}
+
+.ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 900px){
+    .subitem {
+        aspect-ratio: 12 / 4;
+    }
+}
