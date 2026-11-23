@@ -2,31 +2,68 @@ h1 {
     color: red;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    gap: 1rem;
+#progressbar {
+    position: relative;
+    overflow: hidden;
+    height: 100px;
 }
 
-.subitem {
-    display: grid;
-    aspect-ratio: 1 / 1;
-    place-items: center;
+#progressbar.ui-progressbar {
+    width: 100%;
+    height: 100px;
+    background-color: #333;
+    background-image: repeating-linear-gradient(
+        90deg,
+        #444,
+        #444 15px,
+        #2a2a2a 15px,
+        #2a2a2a 30px
+    );
+    background-size: 42.43px 42.43px;
+    animation: moveBelt 1s linear infinite;
 }
 
-[data-person] {
-    background-color: tan;
+#progressbar .ui-progressbar-value {
+    position: relative;
+    height: 100px;
+    margin: 0;
+    border: none;
+    background: transparent;
 }
 
-.table {
-    background-color: aliceblue;
+#progressbar .ui-progressbar-value::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: walkCycle 0.6s steps(1) infinite;
+    transition: transform 0.15s ease;
 }
 
-.food {
-    width: 50%;
-    height: 50%;
-    background-color: red;
+#progressbar.is-reversing .ui-progressbar-value::after {
+    transform: scaleX(-1);
+}
+
+@keyframes walkCycle {
+    0% {
+        background-image: url('../img/person.png');
+    }
+    50% {
+        background-image: url('../img/person2.png');
+    }
+}
+
+@keyframes moveBelt {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 42.43px 0;
+    }
 }
 
 .ui {
@@ -35,10 +72,4 @@ h1 {
     align-items: center;
     width: 100%;
     height: 100%;
-}
-
-@media (min-width: 900px){
-    .subitem {
-        aspect-ratio: 12 / 4;
-    }
 }

@@ -1,45 +1,43 @@
 jQuery(function($){
 
     let startBtn = $(".js-start");
-    let stopLoop = false;
-    let stepDurration = 300;
-    let totalItems = $('[data-person^="1-"]').length;
-    let totalCycleTime = totalItems * stepDurration;
-    let loopInterval = null;
 
-    function runSequence(){
-        if (stopLoop) return;
-
-        for(let i = 1; i <= totalItems; i++){
-            let element = $(`[data-person="1-${i}"]`);
-
-            setTimeout(function(){
-                if (!stopLoop){
-                    element.addClass("food");
-                }
-            }, (i - 1) * stepDurration);
-
-            setTimeout(function(){
-                element.removeClass("food");
-            }, (i - 1) * stepDurration + stepDurration);
-        }
-    }
+    $("#progressbar").progressbar({
+        value: 0
+    });
 
     function startLoop(){
-        stopLoop = false;
-        clearInterval(loopInterval);
-        runSequence();
-        loopInterval = setInterval(function(){
-            if(stopLoop){
-                clearInterval(loopInterval);
-            } else {
-                runSequence();
+        var minVal = 0;
+        var maxVal = 100;
+        var currentVal = minVal;
+        var step = 1;
+        var direction = 1;
+        var speed = 30;
+
+        var bar = $("#progressbar").progressbar({
+            value: currentVal
+        });
+
+        setInterval(function(){
+            currentVal += (step * direction);
+
+            if (currentVal >= maxVal){
+                currentVal = maxVal;
+                direction = -1;
+                bar.addClass("is-reversing");
+            } else if (currentVal <= minVal){
+                currentVal = minVal;
+                direction = 1;
+                bar.removeClass("is-reversing");
             }
-        }, totalCycleTime);
+
+            bar.progressbar("value", currentVal);
+        }, speed);
     }
 
     startBtn.on("click", function(){
         startLoop();
+        $(this).hide();
     });
 
 });
