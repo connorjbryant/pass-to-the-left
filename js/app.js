@@ -2,10 +2,22 @@ jQuery(function($){
 
     let progressTimer;
     let currentVal = 0;
+    let randomNum = 0;
+    let winMargin = 15;
+
+    function getRandomTarget(){
+        let maxStart = 95 - winMargin;
+        return Math.floor(Math.random() * (maxStart - 10 + 1)) + 10;
+    }
 
     function initBars(group){
+        randomNum = getRandomTarget();
+        let winEnd = randomNum + winMargin;
         group.find(".progressbar").progressbar({ value: 0 });
-        group.find(".progressbar2").progressbar({ value: 70 });
+        group.find(".progressbar2").progressbar({ value: randomNum }).css({
+            "--win-start": randomNum + "%",
+            "--win-end" : winEnd + "%"
+        });
     }
 
     initBars($(".group").first());
@@ -16,7 +28,7 @@ jQuery(function($){
         currentVal = minVal;
         var step = 1;
         var direction = 1;
-        var speed = 30;
+        var speed = 40;
 
         var bar = group.find(".progressbar");
 
@@ -50,7 +62,7 @@ jQuery(function($){
         if (progressTimer){
             clearInterval(progressTimer);
             progressTimer = null;
-            if (currentVal >= 70 && currentVal <= 80){
+            if (currentVal >= randomNum && currentVal <= randomNum + winMargin){
                 alert("winner");
                 let newGroup = $(".group").first().clone();
                 newGroup.find(".progressbar", ".progressbar2").removeClass("ui-progressbar ui-widget ui-widget-content ui-corner-all is-reversing")
