@@ -36,17 +36,18 @@ h1 {
 .progressbar .ui-progressbar-value::after {
     content: "";
     position: absolute;
-    right: -100px; /* centers on currentval max */
+    right: -72px; /* half of 144ox so chef horizonal center line matches with bar edge */
     top: 0;
-    width: 200px;
-    height: 200px;
+    width: 144px;
+    height: 192px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom; /* sits cleanly on the floor */
     background-image: url('../img/chef.gif');
-    image-rendering: pixelated;
+    background-size: 144px 192px;
     image-rendering: crisp-edges;
+    image-rendering: pixelated;
     /* animation: walkCycle 0.6s steps(1) infinite; */
-    transition: transform 0.15s ease;
+    transition: none;
 }
 
 .progressbar.is-reversing .ui-progressbar-value::after {
