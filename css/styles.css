@@ -42,7 +42,7 @@ h1 {
     height: 200px;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('../img/200.gif');
+    background-image: url('../img/chef.gif');
     /* animation: walkCycle 0.6s steps(1) infinite; */
     transition: transform 0.15s ease;
 }
